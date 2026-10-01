@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "irmy-messaging"
+version = "1.0.0"
+description = "Asynchronous RabbitMQ messaging for IRMy services: HMAC-signed events over quorum queues"
+readme = "README.md"
+requires-python = ">=3.12"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Bendyna V. S.R.L.", email = "info@irmy.tech" }]
+keywords = ["irmy", "rabbitmq", "amqp", "aio-pika", "messaging", "events"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Framework :: AsyncIO",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: System :: Networking",
+    "Typing :: Typed",
+]
+dependencies = [
+    "aio-pika>=9.6.2,<10",
+    "pydantic>=2.13.5,<3",
+    "prometheus-client>=0.26.0,<1",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest>=8",
+    "pytest-asyncio>=0.24",
+]
+
+[tool.setuptools.packages.find]
+include = ["irmy_messaging*"]
+
+[tool.setuptools.package-data]
+irmy_messaging = ["py.typed"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
